@@ -2,7 +2,7 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 %>
-<p>
+<p id="watchers_select_multiple">
 <%= l(:watchers_select_multiple) %>
 <%
   options=""
@@ -24,4 +24,13 @@
 
 <%# content_for :header_tags do %>
   <%= javascript_include_tag "watchers_multisel.js", :plugin => 'redmine_watchers_by_group' %>
+
+<script type="text/javascript">
+  var adjustPosition = function() {
+    document.getElementById("watchers_form").parentNode.appendChild( document.getElementById("watchers_select_multiple") );
+  };
+  // make compatible with prototype (redmine <=2.0) and jquery (redmine >=2.1) both
+  if(document.observe) document.observe("dom:loaded", adjustPosition);
+  else if(jQuery) jQuery(document).ready(adjustPosition);
+</script>
 <%# end %>
