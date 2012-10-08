@@ -2,8 +2,8 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 %>
-<p id="watchers_select_multiple">
-<%= l(:watchers_select_multiple) %>
+<p id="watchers_select_multiple_by_group">
+<%= l(:watchers_select_multiple_by_group) %>
 <%
   options=""
   @groups = Group.find(:all, :order => 'lastname').each do |item|
@@ -27,7 +27,7 @@
 
 <script type="text/javascript">
   var adjustPosition = function() {
-    document.getElementById("watchers_form").parentNode.appendChild( document.getElementById("watchers_select_multiple") );
+    document.getElementById("watchers_form").parentNode.appendChild( document.getElementById("watchers_select_multiple_by_group") );
   };
   // make compatible with prototype (redmine <=2.0) and jquery (redmine >=2.1) both
   if(document.observe) document.observe("dom:loaded", adjustPosition);
