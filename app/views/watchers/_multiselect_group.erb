@@ -5,22 +5,21 @@
 <p>
 <%= l(:watchers_select_multiple) %>
 <%
-roles=""
-@groups = Group.find(:all, :order => 'lastname').each do |item|
-key=item[:lastname]
-value=item.users
-values=Array.new
-value.each do |user|
-values+=[user[:id]]
-end
-roles+="<option value=\"#{values.join(',')}\">#{key}</option>"
-end %>
-<%= select_tag(:watcher_multiple_group, roles.html_safe)
+  options=""
+  @groups = Group.find(:all, :order => 'lastname').each do |item|
+    key=item[:lastname]
+    value=item.users
+    values=Array.new
+    value.each do |user| values+=[user[:id]] end
+    options+="<option value=\"#{values.join(',')}\">#{key}</option>"
+  end
 %>
-  <input type="submit" value="Select" onclick="return checkSome('issue[watcher_user_ids][]')" /> |
-  <input type="submit" value="Unselect" onclick="return uncheckSome('issue[watcher_user_ids][]')" /> |
-  <input type="submit" value="Select All" onclick="return checkAll('issue[watcher_user_ids][]')" /> |
-  <input type="submit" value="Unselect All" onclick="return uncheckAll('issue[watcher_user_ids][]')" />
+<%= select_tag(:watcher_multiple_group, options.html_safe)
+%>
+  <input type="button" value="Select" onclick="checkSome('issue[watcher_user_ids][]');" /> |
+  <input type="button" value="Unselect" onclick="uncheckSome('issue[watcher_user_ids][]');" /> |
+  <input type="button" value="Select All" onclick="checkAll('issue[watcher_user_ids][]');" /> |
+  <input type="button" value="Unselect All" onclick="uncheckAll('issue[watcher_user_ids][]');" />
 </p>
 
 <%# content_for :header_tags do %>
