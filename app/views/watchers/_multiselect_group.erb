@@ -2,7 +2,7 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 %>
-<p id="watchers_select_multiple_by_group">
+<p id="watchers_select_multiple_by_group" style="display:none;">
 <%= l(:watchers_select_multiple_by_group) %>
 <%
   options=""
@@ -27,7 +27,11 @@
 
 <script type="text/javascript">
   var adjustPosition = function() {
-    document.getElementById("watchers_form").parentNode.appendChild( document.getElementById("watchers_select_multiple_by_group") );
+	var watchersGroup = document.getElementById("watchers_select_multiple_by_group");
+	if(watchersGroup) {
+	  watchersGroup.style.display = 'block';
+      document.getElementById("watchers_form").parentNode.appendChild( watchersGroup );
+	}
   };
   // make compatible with prototype (redmine <=2.0) and jquery (redmine >=2.1) both
   if(document.observe) document.observe("dom:loaded", adjustPosition);

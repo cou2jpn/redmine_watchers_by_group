@@ -1,6 +1,6 @@
 module Redmine_watchers_by_group
   class Hooks < Redmine::Hook::ViewListener
-    def view_issues_form_details_bottom(context={ })
+    def view_issues_new_top(context={ })
       controller = context[:controller]
       return '' unless controller
       action_name = controller.action_name
