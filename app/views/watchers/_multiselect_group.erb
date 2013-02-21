@@ -2,7 +2,7 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 %>
-<p id="watchers_select_multiple_by_group" style="display:none;">
+<span id="watchers_select_multiple_by_group" style="display:none;">
 <%= l(:watchers_select_multiple_by_group) %>
 <%
   options=""
@@ -20,18 +20,18 @@
   <input type="button" value="Unselect" onclick="uncheckSome('issue[watcher_user_ids][]');" /> |
   <input type="button" value="Select All" onclick="checkAll('issue[watcher_user_ids][]');" /> |
   <input type="button" value="Unselect All" onclick="uncheckAll('issue[watcher_user_ids][]');" />
-</p>
+</span>
 
 <%# content_for :header_tags do %>
   <%= javascript_include_tag "watchers_multisel.js", :plugin => 'redmine_watchers_by_group' %>
 
 <script type="text/javascript">
   var adjustPosition = function() {
-	var watchersGroup = document.getElementById("watchers_select_multiple_by_group");
-	if(watchersGroup) {
-	  watchersGroup.style.display = 'block';
-      document.getElementById("watchers_form").parentNode.appendChild( watchersGroup );
-	}
+    var watchersGroup = document.getElementById("watchers_select_multiple_by_group");
+    if(watchersGroup) {
+      watchersGroup.style.display = 'block';
+      document.getElementById("watchers_form").appendChild( watchersGroup );
+    }
   };
   // make compatible with prototype (redmine <=2.0) and jquery (redmine >=2.1) both
   if(document.observe) document.observe("dom:loaded", adjustPosition);
