@@ -14,9 +14,9 @@ function uncheckAll(name)
     return false;
 }
 
-function checkSome(name)
+function checkSome(name, obj)
 {
-    var selected_values = document.getElementById('watcher_multiple_group').options[document.getElementById('watcher_multiple_group').selectedIndex].value.split(',');
+    var selected_values = document.getElementById('watcher_multiple_' + obj).options[document.getElementById('watcher_multiple_' + obj).selectedIndex].value.split(',');
     boxes=document.getElementsByName(name);
     for (var i = 0; i < boxes.length; i++){
         for (var j = 0; j < selected_values.length; j++){
@@ -29,9 +29,9 @@ function checkSome(name)
     return false;
 }
 
-function uncheckSome(name)
+function uncheckSome(name, obj)
 {
-    var selected_values=document.getElementById('watcher_multiple_group').options[document.getElementById('watcher_multiple_group').selectedIndex].value.split(',');
+    var selected_values=document.getElementById('watcher_multiple_' + obj).options[document.getElementById('watcher_multiple_' + obj).selectedIndex].value.split(',');
     boxes=document.getElementsByName(name);
     for (var i = 0; i < boxes.length; i++){
         for (var j = 0; j < selected_values.length; j++){

@@ -1,2 +1,8 @@
 en:
-  watchers_select_multiple_by_group: "Select multiple watchers by group: "
+  watchers_multiselect_options: Watchers multi-select
+  button_select_group: Select group
+  button_unselect_group: Unselect group
+  button_select_role: Select role
+  button_unselect_role: Unselect role
+  button_select_all: Select all
+  button_unselect_all: Unselect all

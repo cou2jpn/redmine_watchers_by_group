@@ -1,23 +1,27 @@
 Redmine Select Watchers By Group Plugin
 =======================================
 
-Allows issue creator to select multiple watchers by group
+Allows issue creator to select multiple watchers by group and role.
 
-![Screenshot](https://raw.github.com/wookayin/redmine_watchers_by_group/master/screenshot.png)
+This plugin is forked from the original one (from wookayin)
+and added the function of watchers multi-select by role.
+
+![Screenshot](https://raw.github.com/cou2jpn/redmine_watchers_by_group/master/screenshot.png)
 
 ## Install
 
-(On directory REDMINE_HOME/vendor/plugins for Redmine 1.x or REDMINE_HOME/plugins for Redmine 2.0)
+On directory REDMINE_HOME/vendor/plugins for Redmine 1.x.
 
 ```bash
-git clone https://github.com/wookayin/redmine_watchers_by_group
+git clone https://github.com/cou2jpn/redmine_watchers_by_group
 ```
 
 then just restart redmine server.
 
 ## Version Compatibility
 
-This plugin is forked from the original one (from alivila) and maintained to support latest redmine versions.
+Compatible with Redmine 1.4.x. (not tested in 2.x)
 
-Compatible with Redmine 2.0.x, 2.1.x, 2.2.x and 2.3.x.
+## Thanks
 
+Thanks to Jongwook Choi, and Milan Stastny. Original readme is README_original.md.

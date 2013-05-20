@@ -1,33 +1,46 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
-<span id="watchers_select_multiple_by_group" style="display:none;">
-<%= l(:watchers_select_multiple_by_group) %>
+<span id="watchers_select_multiple" style="display:none;">
 <%
-  options=""
-  @groups = Group.find(:all, :order => 'lastname').each do |item|
+  options = ""
+  group = Group.find(:all, :order => 'lastname').each do |item|
     key=item[:lastname]
     value=item.users
     values=Array.new
     value.each do |user| values+=[user[:id]] end
     options+="<option value=\"#{values.join(',')}\">#{key}</option>"
   end
-%>
-<%= select_tag(:watcher_multiple_group, options.html_safe)
-%>
-  <input type="button" value="Select" onclick="checkSome('issue[watcher_user_ids][]');" /> |
-  <input type="button" value="Unselect" onclick="uncheckSome('issue[watcher_user_ids][]');" /> |
-  <input type="button" value="Select All" onclick="checkAll('issue[watcher_user_ids][]');" /> |
-  <input type="button" value="Unselect All" onclick="uncheckAll('issue[watcher_user_ids][]');" />
+  role_options = ""
+  roles = @project.users_by_role.keys.sort.each do |role|
+    key = role.name
+    values = @project.users_by_role[role].collect{|user| user.id}
+    role_options << "<option value=\"#{values.join(',')}\">#{key}</option>"
+  end
+-%>
+<%= label_tag("watchers_multiselect_options", l(:watchers_multiselect_options)) %>
+<span id="watchers_multiselect_options">
+<% if !group.blank? -%>
+<div>
+<%= select_tag(:watcher_multiple_group, options.html_safe) %>
+  <%= submit_tag l(:button_select_group), :name => nil, :onclick => "checkSome('issue[watcher_user_ids][]', 'group');", :type => 'button' %>
+  <%= submit_tag l(:button_unselect_group), :name => nil, :onclick => "uncheckSome('issue[watcher_user_ids][]', 'group');", :type => 'button' %>
+</div>
+<% end -%>
+<% if !role_options.blank? -%>
+<div>
+<%= select_tag(:watcher_multiple_role, role_options.html_safe) %>
+  <%= submit_tag l(:button_select_role), :name => nil, :onclick => "checkSome('issue[watcher_user_ids][]', 'role');", :type => 'button' %>
+  <%= submit_tag l(:button_unselect_role), :name => nil, :onclick => "uncheckSome('issue[watcher_user_ids][]', 'role');", :type => 'button' %>
+</div>
+<% end -%>
+<div>
+  <%= submit_tag l(:button_select_all), :name => nil, :onclick => "checkAll('issue[watcher_user_ids][]');", :type => 'button' %>
+  <%= submit_tag l(:button_unselect_all), :name => nil, :onclick => "uncheckAll('issue[watcher_user_ids][]');", :type => 'button' %>
+</div>
 </span>
-
-<%# content_for :header_tags do %>
-  <%= javascript_include_tag "watchers_multisel.js", :plugin => 'redmine_watchers_by_group' %>
+</span>
 
 <script type="text/javascript">
   var adjustPosition = function() {
-    var watchersGroup = document.getElementById("watchers_select_multiple_by_group");
+    var watchersGroup = document.getElementById("watchers_select_multiple");
     if(watchersGroup) {
       watchersGroup.style.display = 'block';
       document.getElementById("watchers_form").appendChild( watchersGroup );
@@ -37,4 +50,9 @@
   if(document.observe) document.observe("dom:loaded", adjustPosition);
   else if(jQuery) jQuery(document).ready(adjustPosition);
 </script>
-<%# end %>
+
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag "watchers_multisel.css", :plugin => "redmine_watchers_by_group", :media => "screen" %>
+<%= javascript_include_tag "watchers_multisel.js", :plugin => 'redmine_watchers_by_group' %>
+<% end %>
+
