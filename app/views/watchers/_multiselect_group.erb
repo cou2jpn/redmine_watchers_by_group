@@ -51,8 +51,5 @@
   else if(jQuery) jQuery(document).ready(adjustPosition);
 </script>
 
-<% content_for :header_tags do %>
-<%= stylesheet_link_tag "watchers_multisel.css", :plugin => "redmine_watchers_by_group", :media => "screen" %>
-<%= javascript_include_tag "watchers_multisel.js", :plugin => 'redmine_watchers_by_group' %>
-<% end %>
+<%= javascript_include_tag 'watchers_multisel', :plugin => 'redmine_watchers_by_group' %>
 

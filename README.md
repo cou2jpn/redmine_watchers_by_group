@@ -20,7 +20,7 @@ then just restart redmine server.
 
 ## Version Compatibility
 
-Compatible with Redmine 1.4.x. (not tested in 2.x)
+Compatible with Redmine 1.4.x. and 2.x
 
 ## Thanks
 
