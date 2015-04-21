@@ -1,7 +1,7 @@
 <span id="watchers_select_multiple" style="display:none;">
 <%
   options = ""
-  group = Group.find(:all, :order => 'lastname').each do |item|
+  group = Group.where(:type => 'Group').sort.each do |item|
     key=item[:lastname]
     value=item.users
     values=Array.new
