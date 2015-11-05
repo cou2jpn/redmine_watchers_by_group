@@ -5,7 +5,7 @@ module Redmine_watchers_by_group
       return '' unless controller
       action_name = controller.action_name
       return '' unless action_name
-      return '' unless action_name=="new"
+      return '' unless action_name=="new" && context[:request].parameters[:copy_from].blank?
       context[:controller].send(:render_to_string, {
           :partial => 'watchers/multiselect_group',
           :locals => context
